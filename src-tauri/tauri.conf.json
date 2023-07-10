@@ -40,7 +40,7 @@
         "title": "json-editor",
         "width": 800,
         "height": 600,
-        "fileDropEnabled": true
+        "fileDropEnabled": false
       }
     ]
   }

@@ -1,22 +1,29 @@
-import { createSignal } from "solid-js";
+import { Show, createSignal } from "solid-js";
 import "./App.scss";
 import { AiOutlinePlus } from 'solid-icons/ai'
 
+const { listen } = await import('@tauri-apps/api/event')
+
 function App() {
 
-  const [file, setFile] = createSignal<File | null>(null);
+  const [isFile, setIsFile] = createSignal<boolean>(false);
   const [isOnHover, setIsOnHover] = createSignal<boolean>(false);
 
-  const handleDrop = (e: any) => {
+  const handleDrop = (e: DragEvent) => {
     e.preventDefault();
-    console.log(e)
+    e.stopPropagation();
+    setIsOnHover(false)
+
+    if (e.dataTransfer) {
+      console.log("REEE")
+      setIsFile(true)
+    }
 
   }
 
   const handleDragEnter = (e: any) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("REEEEE")
     setIsOnHover(true)
 
   };
@@ -31,22 +38,22 @@ function App() {
   };
 
   return (
-    <div class="container">
-      <div
-        onDrop={e => handleDrop(e)}
-        onDragOver={e => handleDragOver(e)}
-        onDragEnter={e => handleDragEnter(e)}
-        onDragLeave={e => handleDragLeave(e)}
-        class={`${isOnHover() ? 'dropzone-hover' : 'dropzone'}`}>
-        <div class='icon-container'>
-          <AiOutlinePlus size={128} style={{ fill: 'white' }} color='#000000' />
+    <Show when={!isFile()} fallback={<div class='icon-container'>File uploaded!</div>}>
+      <div class="container">
+        <div
+          onDrop={e => handleDrop(e)}
+          onDragOver={e => handleDragOver(e)}
+          onDragEnter={e => handleDragEnter(e)}
+          onDragLeave={e => handleDragLeave(e)}
+          class={`${isOnHover() ? 'dropzone-hover' : 'dropzone'}`}>
+          <div class='icon-container'>
+            <AiOutlinePlus size={128} style={{ fill: 'white' }} color='#000000' />
+            <span>Add JSON File</span>
+          </div>
         </div>
       </div>
-      <div class="helper-text">
-        <span>Add JSON File</span>
-      </div>
-    </div>
-  );
+    </Show>
+  )
 }
 
 export default App;
