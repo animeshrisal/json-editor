@@ -1,0 +1,45 @@
+body {
+  background-color: rgb(49, 49, 49);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .icon-container {
+    pointer-events: none;
+  }
+
+  .dropzone {
+    transition-duration: 0.2s;
+    border: 1px solid white;
+    border-radius: 16px;
+    border-style: dashed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    width: 80%;
+  }
+
+  .dropzone-hover {
+    transition-duration: 0.2s;
+    background-color: rgb(75, 75, 75);
+    border: 1px solid white;
+    border-radius: 16px;
+    border-style: dashed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    width: 80%;
+  }
+
+  .helper-text {
+    margin-top: 2rem;
+    color: white;
+  }
+}
