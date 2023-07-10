@@ -8,6 +8,7 @@ function Home() {
   const [isFile, setIsFile] = createSignal<boolean>(false);
   const [isOnHover, setIsOnHover] = createSignal<boolean>(false);
   const navigate = useNavigate();
+  const fileReader = new FileReader();
 
   const handleDrop = (e: DragEvent) => {
     e.preventDefault();
@@ -16,8 +17,14 @@ function Home() {
 
     if (e.dataTransfer) {
       console.log("REEE")
-      setIsFile(true)
-      navigate('/editor')
+      fileReader.readAsText(e.dataTransfer.files[0])
+      fileReader.onload = (e: ProgressEvent<FileReader>) => {
+        localStorage.setItem("pokemon_data", JSON.stringify(e.target?.result))
+      }
+      fileReader.onloadend = (e: ProgressEvent<FileReader>) => {
+        navigate('/editor')
+      }
+
     }
 
   }
