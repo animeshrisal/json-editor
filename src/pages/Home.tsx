@@ -24,9 +24,7 @@ function Home() {
       fileReader.onloadend = (e: ProgressEvent<FileReader>) => {
         navigate('/editor')
       }
-
     }
-
   }
 
   const handleDragEnter = (e: any) => {

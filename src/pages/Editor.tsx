@@ -43,7 +43,7 @@ function Editor() {
             </Modal>
           </div>
           <div class="button-group">
-            <button onClick={handleClick}  class='add-button'>Add Entry</button>
+            <button onClick={handleClick} class='add-button'>Add Entry</button>
             <button onClick={addEntry} class='editor-button'>Export</button>
           </div>
         </div>
