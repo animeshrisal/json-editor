@@ -1,0 +1,34 @@
+.editor-container {
+    height: 100vh;
+
+    .header {
+        background-color: white;
+        padding-top: 2rem;
+    }
+
+    .body {
+
+        .json-content {
+            overflow: scroll;
+            margin: 0;
+        }
+
+        display: flex;
+        height: calc(100% - 2rem);
+
+
+        .main-menu {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            .main-body {
+                flex: 1
+            }
+
+            .button-group {
+                margin-left: auto;
+            }
+        }
+    }
+}
