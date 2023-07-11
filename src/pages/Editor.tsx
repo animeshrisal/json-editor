@@ -33,7 +33,7 @@ function Editor() {
     <div class="editor-container">
       <div class="header" />
       <div class="body">
-        <div class="json-content">
+        <div class={`json-content ${isModalOpen() && 'disable-scroll'}`}>
           <div >{key().map(x => <Content test={x} />)}</div>
         </div>
         <div class="main-menu">
